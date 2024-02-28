@@ -1,27 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
 .container {
     padding: 20px;
-    background-color: #f2f2f2;
+    background-color: #fff;
     border-radius: 5px;
     margin: 20px auto;
     max-width: 400px;
     text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
 }
 
 .clearfix::after {
     content: "";
     clear: both;
     display: table;
-}
-
-.cancelbtn {
-    background-color: #f44336;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 50%;
-    float: left;
 }
 
 .collectdatabtn {
@@ -31,10 +39,33 @@
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 50%;
-    float: right;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
 .collectdatabtn:hover {
-    opacity: 0.8;
+    background-color: #45a049;
+}
+
+#outputContainer {
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 20px auto;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#outputContainer h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#output {
+    font-size: 18px;
+    color: #333;
 }
