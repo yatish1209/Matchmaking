@@ -3,28 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fingerprinting</title>
+    <title>matchmaking</title>
     <link  href="styles.css"  rel="stylesheet">
 </head>
 <body>
-    <form id="sheetdb-form">
-        <div class="container">
-            <h1>Collect Data</h1>
-            <p>Enter Coordinates and Tap Collect Data</p>
-            <hr>
 
-            <label for="latitude"><b>Latitude</b></label>
-            <input type="text" placeholder="Enter Latitude" name="data[latitude]" id="latitudeInput" required>
-
-            <label for="longitude"><b>Longitude</b></label>
-            <input type="text" placeholder="Enter Longitude" name="data[longitude]" id="longitudeInput" required>
-
-            <div class="clearfix">
-                <button type="button" class="cancelbtn">Cancel</button>
-                <button type="button" class="collectdatabtn" onclick="collectAndMatchData()">Get Location</button>
-            </div>
+    <div class="container">
+        <h1>Collect Data</h1>
+        <p>Tap "Get Location" to collect data</p>
+        <hr>
+        <div class="clearfix">
+            <button type="button" class="collectdatabtn" onclick="collectAndMatchData()">Get Location</button>
         </div>
-    </form>
+    </div>
 
     <div id="outputContainer" class="container">
         <h1>Matched Location</h1>
@@ -33,9 +24,6 @@
 
 <script>
     function collectAndMatchData() {
-        var latitude = document.getElementById('latitudeInput').value;
-        var longitude = document.getElementById('longitudeInput').value;
-
         // Measure load time and RTT
         var url = 'www.google.com';
         var loadtime = measureResourceLoadTime(url);
