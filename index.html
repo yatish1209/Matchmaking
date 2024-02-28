@@ -1,5 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fingerprinting</title>
+    <link  href="styles.css"  rel="stylesheet">
+</head>
+<body>
+    <form id="sheetdb-form">
+        <div class="container">
+            <h1>Collect Data</h1>
+            <p>Enter Coordinates and Tap Collect Data</p>
+            <hr>
+
+            <label for="latitude"><b>Latitude</b></label>
+            <input type="text" placeholder="Enter Latitude" name="data[latitude]" id="latitudeInput" required>
+
+            <label for="longitude"><b>Longitude</b></label>
+            <input type="text" placeholder="Enter Longitude" name="data[longitude]" id="longitudeInput" required>
+
+            <div class="clearfix">
+                <button type="button" class="cancelbtn">Cancel</button>
+                <button type="button" class="collectdatabtn" onclick="collectAndMatchData()">Get Location</button>
+            </div>
+        </div>
+    </form>
+
+    <div id="outputContainer" class="container">
+        <h1>Matched Location</h1>
+        <div id="output"></div>
+    </div>
+
 <script>
     function collectAndMatchData() {
+        var latitude = document.getElementById('latitudeInput').value;
+        var longitude = document.getElementById('longitudeInput').value;
+
         // Measure load time and RTT
         var url = 'www.google.com';
         var loadtime = measureResourceLoadTime(url);
@@ -11,21 +47,15 @@
         fetch('https://sheetdb.io/api/v1/w3rcsxtqatd69')
             .then(response => response.json())
             .then(data => {
-                // Initialize variables for closest match
                 var closestLatitude;
                 var closestLongitude;
                 var minDifference = Infinity;
 
-                // Iterate through each row in the table
                 data.forEach(row => {
-                    // Calculate the difference between the measured load time and RTT with the values in the table
                     var loadtimeDifference = Math.abs(loadtime - row.loadtime);
                     var rttDifference = Math.abs(rtt - row.rtt);
-
-                    // Calculate the total difference
                     var totalDifference = loadtimeDifference + rttDifference;
 
-                    // Update closest latitude and longitude if a closer match is found
                     if (totalDifference < minDifference) {
                         minDifference = totalDifference;
                         closestLatitude = row.latitude;
@@ -34,7 +64,8 @@
                 });
 
                 // Output the closest latitude and longitude
-                alert('Closest Latitude: ' + closestLatitude + '\nClosest Longitude: ' + closestLongitude);
+                var output = document.getElementById('output');
+                output.innerHTML = "Latitude: " + closestLatitude + ", Longitude: " + closestLongitude;
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -95,3 +126,6 @@
             });
     }
 </script>
+
+</body>
+</html>
